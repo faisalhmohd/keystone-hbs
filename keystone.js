@@ -1,4 +1,5 @@
 var keystone = require('keystone');
+var myip = require('quick-local-ip');
 
 keystone.init({
 
@@ -53,3 +54,6 @@ keystone.set('nav', {
 });
 
 keystone.start();
+console.log('------------------------------');
+console.log('Available at http://' + myip.getLocalIP4() + ":3000");
+console.log('------------------------------');
