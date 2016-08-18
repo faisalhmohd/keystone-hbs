@@ -1,5 +1,6 @@
 var keystone = require('keystone');
 var myip = require('quick-local-ip');
+var handlebars = require('express-handlebars');
 
 keystone.init({
 
@@ -11,7 +12,15 @@ keystone.init({
 	'static': 'public',
 
 	'views': 'templates/views',
-	'view engine': 'jade',
+	'view engine': 'hbs',
+
+	'custom engine': handlebars.create({
+		layoutsDir: 'templates/layouts',
+		partialsDir: 'templates/partials',
+		defaultLayout: 'default',
+		helpers: new require('./templates/helpers')(),
+		extname: '.hbs',
+	}).engine,
 
 	'auto update': true,
 	'mongo': process.env.MONGO_URI || process.env.MONGOLAB_URI || 'mongodb://localhost/keystone-demo',
