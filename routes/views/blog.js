@@ -26,6 +26,7 @@ exports = module.exports = function (req, res) {
 			}
 
 			locals.categories = results;
+			console.log(categories);
 
 			// Load the counts for each category
 			async.each(locals.categories, function (category, next) {
